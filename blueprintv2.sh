@@ -1,4 +1,4 @@
-echo "Finish Forensic Question"
+echo "Manual To-Do: Finish Forensic Questions"
 
 echo "Finish password policy"
 
@@ -6,17 +6,13 @@ echo "Finish user access control" #echo allow-guest=false >> /usr/share/lightdm/
 
 echo "Let script run, try to run as root? (for the bash history command)"
 
-echo "Run clamav run to detect malware"
+echo "Run clamav (malware scan file) to detect malware"
 
 echo "disable root login and change password" #seperate file for bottom two events
 echo "run updates"
 
-echo "EXTRA:"
-echo "set host file to default (line 199)" #https://github.com/BiermanM/CyberPatriot-Scripts/blob/master/UbuntuScript.sh
-echo "check rc.local to make sure no startup scripts are running (check comments for link to instructions, line 181)" #https://github.com/BiermanM/CyberPatriot-Scripts/blob/master/UbuntuScript.sh
-
 #TO-DO
-
+  
 #install firewall + configure
 
   sudo apt-get install ufw -y -qq
@@ -28,6 +24,17 @@ echo "check rc.local to make sure no startup scripts are running (check comments
   sudo ufw deny 1337 #used by http tools, want secure browser protection
   sudo ufw deny 2049 #commonly attacked port
   sudo ufw deny 7100 #allows for buffer overflows
+
+  #denying ufw connections depending on service (comment out if service is approved)
+  sudo ufw deny ftp 
+  sudo ufw deny ssh
+  sudo ufw deny telnet
+  sudo ufw deny smtp
+  sudo ufw deny printer
+  sudo ufw deny http
+
+  sudo service ssh restart
+  clear
 
 #autoclean and autoremove - gets rid of packages that have been downloaded but not installed (simply taking up cache space, could be malware)
 
@@ -41,6 +48,29 @@ echo "check rc.local to make sure no startup scripts are running (check comments
   sudo chmod 644 /etc/hosts
   # $name = readline("Please type in your username")
   # sudo chmod 640 /home/$name/bash_history
+
+#disabling guest
+  sudo echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
+
+#turn on audit policies
+  sudo apt-get install auditd -y
+  sudo auditctl -e 1 > /var/local/audit.log
+
+#no startup scripts running
+  echo > /etc/rc.local
+  echo 'exit 0' >> /etc/rc.local
+
+#install ssh server 
+  sudo apt-get install openssh-server -y -qq
+  sudo ufw allow ssh
+  lineNum = "$(grep -n -m 1 PermitRootLogin)"
+  sed -e "${lineNum}s/.*/PermitRootLogin no/" /etc/ssh/sshd_config 
+  
+
+#turn on automatic updates (just security updates, doesn't work for everythin to make sure admin vets updates)
+
+  sudo apt-get install unattended-upgrades
+  sudo dpkg-reconfigure unattended-upgrades
   
 #find all media files and remove
   sudo find / -name "*.mp3" -type f >> ~/congenial-disco/prohibitedFilesList.log
@@ -54,10 +84,8 @@ echo "check rc.local to make sure no startup scripts are running (check comments
   sudo find /bin/ -name "*.sh" -type f -delete # removes any script files from trash
 
   #Remove variances of netcat
-  sudo apt-get purge netcat -y -qq
-  sudo apt-get purge ncat -y -qq
-  sudo apt-get purge netcat-traditional -y -qq
-  sudo apt-get purge netcat-openbsd -y -qq
+  sudo apt-get purge netcat* -y -qq
+  sudo apt-get purge ncat* -y -qq
   sudo rm /usr/bin/nc
 
   #remove hydra 
@@ -88,13 +116,36 @@ echo "check rc.local to make sure no startup scripts are running (check comments
   #remove ettercap
   sudo apt-get purge ettercap-text-only -y -qq
   sudo apt-get purge ettercap-graphical -y -qq
-  
-#check netstat ports and daemons
 
-#sysctl security?
+  #remover torrent
+  sudo apt-get purge *torrent -y -qq  
+
+  #remove wireshark
+  sudo apt-get purge wireshark -y -qq
+  
+  #other
+  sudo apt-get purge zenmap* -y -qq
+  sudo apt-get purge nmap* -y -qq
+  sudo apt-get purge john* -y -qq
+  sudo apt-get purge nitko* -y -qq
+  sudo apt-get purge freeciv* -y -qq
+  sudo apt-get purge kismet* -y -qq
+  sudo apt-get purge minetest* -y -qq
+
+  sudo apt-get autoremove
+  clear
 
 #install a bunch of need anti malware stuff
+  sudo apt-get install chkrootkit clamav rkhunter selinux tree auditd
+	clear
+  #does one line work?
+
+#check netstat ports and daemons -> netstat -tulpn
+
+#what is sysctl??
+
+#more specific script elements to include https://github.com/konstruktoid/hardening/blob/master/scripts/auditd
 
 #install ssh server -> apt-get install openssh-server -y
-#if they ask for configuring ssh (or not): go here: Line 215 https://github.com/Turb0Yoda/CyberPatriot-Scripts/blob/master/harden.sh
+#if they ask for configuring ssh (or not)
 #disable root ssh
