@@ -67,12 +67,12 @@ echo "run updates"
   echo 'exit 0' >> /etc/rc.local
 
 #install ssh server 
-  echo "ALLOW SSH"
+  echo "ALLOW SSH + GENERATE RSA KEYS -> make sure to switch permit root login to no"
   sudo apt-get install openssh-server -y -qq
   sudo ufw allow ssh
-  lineNum = "$(grep -n -m 1 PermitRootLogin)"
-  sed -e "${lineNum}s/.*/PermitRootLogin no/" /etc/ssh/ssh_config 
 
+  #sshd_config or ssh_config for system settings -> check ssh best file settings file.
+  
   sudo service ssh restart
   
 
