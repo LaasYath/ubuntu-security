@@ -1,4 +1,4 @@
-#delete any services you want to keep and then delete this
+#delete any services you want to keep and then delete this, dpkg -l find package names and remove
 ssh
 ftp
 avahi
