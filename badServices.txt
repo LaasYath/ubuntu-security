@@ -6,3 +6,7 @@ apache
 samba
 telnet
 vsftpd
+mail
+print
+db
+dns
