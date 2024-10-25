@@ -59,7 +59,7 @@ echo "run updates"
 #turn on audit policies
   echo 	"TURN ON AUDIT POLICIES"
   sudo apt-get install auditd -y
-  sudo auditctl -e 1 > /var/local/audit.log
+  sudo auditctl -e 1
 
 #no startup scripts running
   echo "ENSURE NO START-UP SCRIPTS ARE RUNNING"
@@ -71,7 +71,7 @@ echo "run updates"
   sudo apt-get install openssh-server -y -qq
   sudo ufw allow ssh
   lineNum = "$(grep -n -m 1 PermitRootLogin)"
-  sed -e "${lineNum}s/.*/PermitRootLogin no/" /etc/ssh/sshd_config 
+  sed -e "${lineNum}s/.*/PermitRootLogin no/" /etc/ssh/ssh_config 
 
   sudo service ssh restart
   
