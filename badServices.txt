@@ -1,0 +1,8 @@
+#delete any services you want to keep and then delete this
+ssh
+ftp
+avahi
+apache
+samba
+telnet
+vsftpd
