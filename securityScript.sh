@@ -85,12 +85,12 @@ sudo dpkg-reconfigure unattended-upgrades
 #find all media files and remove
 
 echo "REMOVE MPR AND MOV FILES"
-sudo find / -name "*.mp3" -type f >> ~/congenial-disco/prohibitedFilesList.log
-sudo find / -name "*.mp4" -type f >> ~/congenial-disco/prohibitedFilesList.log
-sudo find / -name "*.wav" -type f >> ~/congenial-disco/prohibitedFilesList.log
-sudo find / -name "*.mov" -type f >> ~/congenial-disco/prohibitedFilesList.log
-sudo find / -name "*.mv" -type f >> ~/congenial-disco/prohibitedFilesList.log
-sudo find / -name "*.php" -type f >> ~/congenial-disco/prohibitedFilesList.log
+sudo find / -name "*.mp3" -type f >> ~/congenial-disco/mediaFiles.txt
+sudo find / -name "*.mp4" -type f >> ~/congenial-disco/mediaFiles.txt
+sudo find / -name "*.wav" -type f >> ~/congenial-disco/mediaFiles.txt
+sudo find / -name "*.mov" -type f >> ~/congenial-disco/mediaFiles.txt
+sudo find / -name "*.mv" -type f >> ~/congenial-disco/mediaFiles.txt
+sudo find / -name "*.php" -type f >> ~/congenial-disco/mediaFiles.txt
 
 #remove unwanted malware files and whatnot
 
