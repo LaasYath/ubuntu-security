@@ -2,8 +2,6 @@ echo "Manual To-Do: Finish Forensic Questions"
 
 echo "Finish password policy"
 
-echo "Finish user access control" #echo allow-guest=false >> /usr/share/lightdm/lightdm.conf.d/50-ubuntu.con, echo autologin-user= >> /usr/share/lightdm/lightdm.conf.d/50-ubuntu.conf
-
 echo "Let script run, try to run as root? (for the bash history command)"
 
 echo "Run clamav (malware scan file) to detect malware"
@@ -28,7 +26,7 @@ sudo ufw deny 7100 #allows for buffer overflows
 
 #denying ufw connections depending on service (comment out if service is approved)
 sudo ufw deny ftp 
-sudo ufw deny ssh
+sudo ufw allow ssh
 sudo ufw deny telnet
 sudo ufw deny smtp
 sudo ufw deny printer
@@ -46,15 +44,15 @@ sudo apt-get clean -y -qq
 #set system file permissions
 
 echo "SYSTEM FILE PERMISSIONS (ex. bash history)"
-sudo chmod 640 .bash_history
+sudo chmod 640 ../.bash_history
 sudo chmod 604 /etc/shadow
 sudo chmod 644 /etc/hosts
 # $name = readline("Please type in your username")
 # sudo chmod 640 /home/$name/bash_history
 
 #disabling guest
-echo "DISALLOW GUEST"
-sudo echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
+# echo "DISALLOW GUEST"
+# sudo echo "allow-guest=false" >> /etc/lightdm/lightdm.conf
 
 #turn on audit policies
 echo 	"TURN ON AUDIT POLICIES"
