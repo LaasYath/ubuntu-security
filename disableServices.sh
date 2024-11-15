@@ -12,12 +12,13 @@
 # dns
 
 #delete any services you want to keep and then delete this, dpkg -l find package names and remove (optional)
-service sshd stop
-service telnet stop # Remote Desktop Protocol
-service vsftpd stop # FTP server
-service snmp stop # Type of email server
-service pop3 stop # Type of email server
-service icmp stop # Router communication protocol
-service sendmail stop # Type of email server
-service dovecot stop # Type of email server
+sudo systemctl disable --now nginx
+sudo systemctl disable --now dovecot
+sudo systemctl disable --now sendmail
+sudo systemctl disable --now icmp
+sudo systemctl disable --now pop3
+sudo systemctl disable --now snmp
+sudo systemctl disable --now vsftpd
+sudo systemctl disable --now telnet
+sudo systemctl disable --now ssh
 service --status-all | grep "+" # shows what services are on
