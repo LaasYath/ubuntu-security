@@ -93,7 +93,7 @@ sudo find / -name "*.php" -type f >> mediaFiles.txt
 #remove unwanted malware files and whatnot
 
 echo "DELETE ALL TYPES OF MALWARE"
-sudo find /bin/ -name "*.sh" -type f -delete # removes any script files from trash
+#sudo find /bin/ -name "*.sh" -type f -delete # removes any script files from trash, iterate through list of users and clear trash. THIS COMMAND IS WRONG.
 
 #Remove variances of netcat
 sudo apt-get purge netcat* -y -qq
