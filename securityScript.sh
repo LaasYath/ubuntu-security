@@ -98,7 +98,7 @@ sudo find /bin/ -name "*.sh" -type f -delete # removes any script files from tra
 #Remove variances of netcat
 sudo apt-get purge netcat* -y -qq
 sudo apt-get purge ncat* -y -qq
-sudo rm /usr/bin/nc
+sudo rm -r /usr/bin/nc
 
 #remove hydra 
 sudo apt-get purge hydra -y -qq
