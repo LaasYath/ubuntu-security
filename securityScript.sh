@@ -45,7 +45,7 @@ sudo apt-get clean -y -qq
 
 echo "SYSTEM FILE PERMISSIONS (ex. bash history)"
 sudo chmod 640 ../.bash_history
-sudo chmod 604 /etc/shadow
+sudo chmod 400 /etc/shadow
 sudo chmod 644 /etc/hosts
 # $name = readline("Please type in your username")
 # sudo chmod 640 /home/$name/bash_history
