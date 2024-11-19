@@ -144,6 +144,8 @@ sudo apt-get purge freeciv* -y -qq
 sudo apt-get purge kismet* -y -qq
 sudo apt-get purge minetest* -y -qq
 
+#sudo apt autopurge nmap* postfix* -y qq - get rid of all bad apps in one line 
+
 sudo apt-get autoremove
 clear
 
