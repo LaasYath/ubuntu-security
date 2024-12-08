@@ -146,6 +146,10 @@ sudo apt-get purge minetest* -y -qq
 
 #sudo apt autopurge nmap* postfix* -y qq - get rid of all bad apps in one line 
 
+#check games on the system -> adds to text file, seperate script for deleting
+
+ls -l /usr/games >> games.txt
+
 sudo apt-get autoremove
 clear
 
