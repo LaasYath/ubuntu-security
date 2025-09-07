@@ -1,14 +1,5 @@
 echo "Manual To-Do: Finish Forensic Questions"
 
-echo "Finish password policy"
-
-echo "Let script run, try to run as root? (for the bash history command)"
-
-echo "Run clamav (malware scan file) to detect malware"
-
-echo "disable root login and change password" #seperate file for bottom two events
-echo "run updates"
-
 #TO-DO
   
 #install firewall + configure
@@ -158,14 +149,7 @@ clear
 echo "INSTALL ANTIMALWARE SOFTWARE"
 sudo apt-get install chkrootkit clamav rkhunter selinux tree auditd
 clear
-#does one line work?
 
 #check netstat ports and daemons -> netstat -tulpn
 
-#what is sysctl??
 
-#more specific script elements to include https://github.com/konstruktoid/hardening/blob/master/scripts/auditd
-
-#install ssh server -> apt-get install openssh-server -y
-#if they ask for configuring ssh (or not)
-#disable root ssh
